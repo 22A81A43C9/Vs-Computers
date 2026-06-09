@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -946,6 +946,23 @@ footer {
             <div>
               <div class="ci-label">Our Address</div>
               <div class="ci-value">#8-3-228/1280/81, Jawahar Nagar,<br>Yousufguda, Hyderabad – 500045</div>
+              <div style="margin-top: 0.5rem;">
+                <a href="https://maps.app.goo.gl/LDAyxgzxJw2hnqb86" target="_blank" rel="noopener noreferrer" class="btn-outline" style="padding: 0.4rem 1rem; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 0.4rem; text-decoration: none;">
+                  <i class="fa-solid fa-map-location-dot"></i> View on Google Maps
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="ci-icon">📍</div>
+            <div>
+              <div class="ci-label">Devarapalli Branch Address</div>
+              <div class="ci-value">Opposite Vinayaka Temple,<br>Main Road, Devarapalli – 534313,<br>Andhra Pradesh, India</div>
+              <div style="margin-top: 0.5rem;">
+                <a href="https://maps.app.goo.gl/C7nVhANWEr7cUqcdA" target="_blank" rel="noopener noreferrer" class="btn-outline" style="padding: 0.4rem 1rem; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 0.4rem; text-decoration: none;">
+                  <i class="fa-solid fa-map-location-dot"></i> View on Google Maps
+                </a>
+              </div>
             </div>
           </div>
           <div class="contact-item">
@@ -953,8 +970,12 @@ footer {
             <div>
               <div class="ci-label">Phone Numbers</div>
               <div class="ci-value">
+                <span style="display: block; font-size: 0.8rem; color: var(--muted); margin-bottom: 0.2rem; font-weight: 600; text-transform: uppercase;">Hyderabad Main Branch:</span>
                 <a href="tel:9666903348">96669 03348</a> &nbsp;|&nbsp;
                 <a href="tel:9030445040">90304 45040</a>
+                <span style="display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.6rem; margin-bottom: 0.2rem; font-weight: 600; text-transform: uppercase;">Devarapalli Branch:</span>
+                <a href="tel:9014794348">90147 94348</a> &nbsp;|&nbsp;
+                <a href="tel:9666903348">96669 03348</a>
               </div>
             </div>
           </div>
@@ -966,11 +987,23 @@ footer {
             </div>
           </div>
         </div>
-        <div class="map-box">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.4!2d78.4389!3d17.4318!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDI1JzU0LjUiTiA3OMKwMjYnMjAuMCJF!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin"
-            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-          </iframe>
+        <div class="map-container" style="margin-top: 1.5rem;">
+          <div class="map-tabs" style="display: flex; gap: 0.5rem; margin-bottom: 0.75rem;">
+            <button class="map-tab-btn active" onclick="switchMap('main')" style="flex: 1; padding: 0.6rem; background: var(--card); border: 1px solid var(--accent); border-radius: 8px; color: var(--white); font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.8rem; cursor: pointer; transition: all 0.2s;">Hyderabad (Main Branch)</button>
+            <button class="map-tab-btn" onclick="switchMap('devarapalli')" style="flex: 1; padding: 0.6rem; background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; color: var(--muted); font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.8rem; cursor: pointer; transition: all 0.2s;">Devarapalli Branch</button>
+          </div>
+          <div class="map-box" id="map-main">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.2758!2d78.428787!3d17.442503!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb913d54e8bd61%3A0xc0c770d80c7b9b96!2sVS%20Computers!5e0!3m2!1sen!2sin!4v1717850000000!5m2!1sen!2sin"
+              allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+          <div class="map-box" id="map-devarapalli" style="display: none;">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3813.4357288806297!2d81.55527541170799!3d17.03293378372671!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a37ab003527e8d1%3A0x6a6de733f1f0a11f!2sVs%20Computers!5e0!3m2!1sen!2sin!4v1717850000000!5m2!1sen!2sin"
+              allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
         </div>
       </div>
       <div class="reveal">
@@ -1209,6 +1242,39 @@ function submitForm(event) {
 
 function validateEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+// Switch maps tab
+function switchMap(branch) {
+  const mainMap = document.getElementById('map-main');
+  const devMap = document.getElementById('map-devarapalli');
+  const tabs = document.querySelectorAll('.map-tab-btn');
+  
+  if (branch === 'main') {
+    mainMap.style.display = 'flex';
+    devMap.style.display = 'none';
+    tabs[0].classList.add('active');
+    tabs[0].style.borderColor = 'var(--accent)';
+    tabs[0].style.color = 'var(--white)';
+    tabs[0].style.background = 'var(--card)';
+    
+    tabs[1].classList.remove('active');
+    tabs[1].style.borderColor = 'var(--border)';
+    tabs[1].style.color = 'var(--muted)';
+    tabs[1].style.background = 'rgba(255,255,255,0.02)';
+  } else {
+    mainMap.style.display = 'none';
+    devMap.style.display = 'flex';
+    tabs[1].classList.add('active');
+    tabs[1].style.borderColor = 'var(--accent)';
+    tabs[1].style.color = 'var(--white)';
+    tabs[1].style.background = 'var(--card)';
+    
+    tabs[0].classList.remove('active');
+    tabs[0].style.borderColor = 'var(--border)';
+    tabs[0].style.color = 'var(--muted)';
+    tabs[0].style.background = 'rgba(255,255,255,0.02)';
+  }
 }
 
 // Active nav highlight
